@@ -23,18 +23,18 @@ body {
     margin: 10px;
 }
 
-.top-left {
+.green {
     background-color: green;
 }
 
-.top-right {
+.blue {
     background-color: blue;
 }
 
-.bottom-left {
+.red {
     background-color: red;
 }
 
-.bottom-right {
+.yellow {
     background-color: yellow;
 }
