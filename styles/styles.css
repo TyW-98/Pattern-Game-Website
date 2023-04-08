@@ -1,0 +1,40 @@
+body {
+    background: rgba(75, 135, 184, 0.815);
+}
+
+.heading {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 3rem;
+    margin: 5%;
+    text-align: center;
+    color: rgb(219, 207, 136);
+}
+
+.container {
+    align-items: center;
+    text-align: center;
+}
+
+.btn {
+    width: 200px;
+    height: 200px;
+    border-radius: 25%;
+    border: black solid 10px;
+    margin: 10px;
+}
+
+.top-left {
+    background-color: green;
+}
+
+.top-right {
+    background-color: blue;
+}
+
+.bottom-left {
+    background-color: red;
+}
+
+.bottom-right {
+    background-color: yellow;
+}
