@@ -39,3 +39,8 @@ body {
 .yellow {
     background-color: yellow;
 }
+
+.pressed {
+    background-color: grey;
+    box-shadow: 0 0 20px rgb(103, 103, 146);
+}
