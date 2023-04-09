@@ -33,7 +33,7 @@ body {
 }
 
 .red {
-    background-color: red;
+    background-color: rgb(223, 107, 30);
 }
 
 .yellow {
@@ -43,4 +43,8 @@ body {
 .pressed {
     background-color: grey;
     box-shadow: 0 0 20px rgb(103, 103, 146);
+}
+
+.wrong {
+    background-color: red;
 }

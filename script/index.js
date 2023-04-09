@@ -1,7 +1,9 @@
-const gamePattern = [];
-const userClickedPattern = [];
+var gamePattern = [];
+var userClickedPattern = [];
 const buttonColors = ["green", "blue", "red", "yellow"];
-var level = 0;
+var level = 1;
+var clickCount = 0;
+var startgame = false;
 
 function playSound(color) {
   const audio = new Audio("sounds/" + color + ".mp3");
@@ -16,6 +18,7 @@ function animatePress(currentColor) {
 }
 
 function nextSequence() {
+  userClickedPattern = [];
   $(".heading").text("LEVEL " + level++);
   const randomNumber = Math.floor(Math.random() * 4);
   const randomChosenColor = buttonColors[randomNumber];
@@ -30,18 +33,45 @@ function nextSequence() {
   playSound(randomChosenColor);
 }
 
-$(".btn").on("click", function (event) {
-  let userChosenColour = event.target.id;
-  userClickedPattern.push(userChosenColour);
-  console.log(userChosenColour);
+function checkAnswer(index) {
+  if (gamePattern[index] === userClickedPattern[index]) {
+    console.log("Correct answer");
 
-  playSound(userChosenColour);
-  animatePress(userChosenColour);
+    if (gamePattern.length === userClickedPattern.length) {
+      setTimeout(nextSequence, 1000);
+    }
+  } else {
+    console.log("Invalid answer");
+    const wrongAudio = new Audio("sounds/wrong.mp3");
+    wrongAudio.play();
+    $("body").addClass("wrong");
+    setTimeout(function () {
+      $("body").removeClass("wrong");
+    }, 200);
+    $(".heading").text("Game Over, Press Any Key to restart...");
+    level = 0;
+    gamePattern = [];
+    startgame = false;
+  }
+}
+
+$(".btn").on("click", function (event) {
+  if (startgame) {
+    let userChosenColour = event.target.id;
+    userClickedPattern.push(userChosenColour);
+    console.log(userChosenColour);
+
+    playSound(userChosenColour);
+    animatePress(userChosenColour);
+
+    checkAnswer(userClickedPattern.length - 1);
+  }
 });
 
 $(document).on("keydown", function () {
-  if (level == 0) {
-    $(".heading").text("Level 0");
+  if (level == 1 || !startgame) {
+    startgame = true;
+    $(".heading").text("Level " + level);
+    nextSequence();
   }
-  nextSequence();
 });
